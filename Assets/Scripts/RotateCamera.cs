@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class RotateCamera : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float rotationSpeed = 100f;
+
+    void FixedUpdate()
     {
-        
+        float horizontalInput = Input.GetAxis("Horizontal");
+
+        if (horizontalInput != 0)
+        {
+            RotateObject(horizontalInput);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void RotateObject(float direction)
     {
-        
+        transform.Rotate(Vector3.up, direction * rotationSpeed * Time.deltaTime);
     }
 }
